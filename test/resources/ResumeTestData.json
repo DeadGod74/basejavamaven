@@ -1,0 +1,181 @@
+[
+  {
+    "uuid": "1",
+    "fullName": "John Doe",
+    "contacts": {
+      "PHONE": "+1234567890",
+      "MAIL": "johndoe@example.com",
+      "SKYPE": "johndoe",
+      "PROFILE_LINKEDN": "my LinkedIn",
+      "PROFILE_GITHUB": "my GitHub",
+      "PROFILE_STACKOVERFLOW": "my Stackoverflow",
+      "HOME_PAGE": "my_home_page"
+    },
+    "sections": {
+      "PERSONAL": {
+        "type": "text",
+        "text": "Ответственный, коммуникабельный"
+      },
+      "OBJECTIVE": {
+        "type": "text",
+        "text": "Получение должности разработчика"
+      },
+      "EXPERIENCE": {
+        "type": "org",
+        "content": [
+          {
+            "homePage": {
+              "name": "My Company",
+              "url": "https://mycompany.com"
+            },
+            "positions": [
+              {
+                "title": "Developer",
+                "description": "Разработка приложений"
+              },
+              {
+                "title": "Tester",
+                "description": "Тестирование приложений"
+              }
+            ]
+          },
+          {
+            "homePage": {
+              "name": "Another Company",
+              "url": "https://anothercompany.com"
+            },
+            "positions": [
+              {
+                "startDate": "2020-01-01",
+                "endDate": "2021-12-31",
+                "title": "Developer",
+                "description": "Разработка приложений"
+              },
+              {
+                "startDate": "2020-01-01",
+                "endDate": "2021-12-31",
+                "title": "Tester",
+                "description": "Тестирование приложений"
+              }
+            ]
+          }
+        ]
+      },
+      "EDUCATION": {
+        "type": "org",
+        "content": [
+          {
+            "homePage": {
+              "startDate": "2020-01-01",
+              "endDate": "2021-12-31",
+              "name": "University A",
+              "url": "https://universitya.ru"
+            },
+            "positions": [
+              {
+                "startDate": "2020-01-01",
+                "endDate": "2021-12-31",
+                "title": "it"
+              }
+            ]
+          },
+          {
+            "homePage": {
+              "name": "University B",
+              "url": "https://universityb.ru"
+            },
+            "positions": [
+              {
+                "startDate": "2020-01-01",
+                "endDate": "2021-12-31",
+                "title": "it"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "uuid": "2",
+    "fullName": "Jane Doe",
+    "contacts": {
+      "PHONE": "+0987654321",
+      "MAIL": "janedoe@example.com"
+    },
+    "sections": {
+      "PERSONAL": {
+        "type": "text",
+        "text": "Ответственный, коммуникабельный"
+      },
+      "OBJECTIVE": {
+        "type": "text",
+        "text": "Ответственный, коммуникабельный"
+      },
+      "EXPERIENCE": {
+        "type": "org",
+        "content": [
+          {
+            "homePage": {
+              "name": "My Company",
+              "url": "https://mycompany.com"
+            },
+            "positions": [
+              {
+                "title": "Developer",
+                "description": "Разработка приложений"
+              },
+              {
+                "title": "Tester",
+                "description": "Тестирование приложений"
+              }
+            ]
+          },
+          {
+            "homePage": {
+              "name": "Another Company",
+              "url": "https://anothercompany.ru"
+            },
+            "positions": [
+              {
+                "title": "Developer",
+                "description": "Разработка приложений"
+              },
+              {
+                "title": "Tester",
+                "description": "Тестирование приложений"
+              }
+            ]
+          }
+        ]
+      },
+      "EDUCATION": {
+        "type": "org",
+        "content": [
+          {
+            "homePage": {
+              "name": "University A",
+              "url": "https://universitya.ru"
+            },
+            "positions": [
+              {
+                "title": "it"
+              }
+            ]
+          },
+          {
+            "homePage": {
+              "name": "University B",
+              "url": "https://universityb.ru"
+            },
+            "positions": [
+              {
+                "title": "it"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

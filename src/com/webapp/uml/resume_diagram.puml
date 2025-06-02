@@ -1,0 +1,62 @@
+@startuml
+
+   enum ContactType {
+     PHONE("Телефон")
+     SKYPE("Skype")
+     MAIL("Электронная почта")
+     PROFILE_LINKEDN("Профиль LinkedIn")
+     PROFILE_GITHUB("Профиль GitHub")
+     PROFILE_STACKOVERFLOW("Профиль Stackoverflow")
+     HOME_PAGE("Домашняя страница")
+   }
+
+   enum SectionType {
+       PERSONAL("Личные качества")
+       OBJECTIVE("Позиция")
+       ACHIEVEMENT("Достижения")
+       QUALIFICATIONS("Квалификация")
+       EXPERIENCE("Опыт работы")
+       EDUCATION("Образование")
+   }
+
+   class Link {
+       +String url
+       +String description
+   }
+
+   class Organization {
+       +String name
+       +String location
+   }
+
+   class Resume implements Comparable<Resume> {
+       +String name
+       +List<Section> sections
+       +int compareTo(Resume other)
+   }
+
+   abstract class Section {
+       +SectionType type
+       +String title
+   }
+
+   class SectionList extends Section {
+       +List<Section> sections
+   }
+
+   class SectionOrg extends Section {
+       +Organization organization
+   }
+
+   class SectionText extends Section {
+       +String content
+   }
+
+   Resume --> Section
+   ContactType --> Resume
+   SectionType --> Resume
+   SectionOrg --> Organization
+   SectionText --> String
+   Organization --> Link
+
+   @enduml
