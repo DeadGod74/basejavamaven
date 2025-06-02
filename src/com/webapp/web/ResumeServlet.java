@@ -13,7 +13,7 @@ import java.io.Writer;
 import java.util.List;
 
 public class ResumeServlet extends HttpServlet {
-    private Storage storage = Config.get().getStorage();
+    private final Storage storage = Config.get().getStorage();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws jakarta.servlet.ServletException, IOException {
     }
@@ -23,11 +23,6 @@ public class ResumeServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         Writer writer = response.getWriter();
-
-        List<Resume> resumes = storage.getAllSorted();
-
-        // Отладочное сообщение
-        System.out.println("Количество резюме: " + resumes.size());
 
         writer.write(
                 "<html>\n" +

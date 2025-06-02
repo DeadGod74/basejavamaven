@@ -53,6 +53,6 @@ public class ListSection extends Section{
     }
 
     public String getTextRepresentation() {
-        return String.join(", ", list); // Пример: объединяем элементы списка через запятую
+        return String.join(", ", list);
     }
 }
