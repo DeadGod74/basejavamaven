@@ -203,5 +203,4 @@ public abstract class AbstractStorageTest  {
         storage.clear();
         assertSize(0);
     }
-
 }
