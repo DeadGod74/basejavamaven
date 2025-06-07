@@ -66,4 +66,5 @@ public class ResumeServlet extends HttpServlet {
                 ("view".equals(action) ? "/WEB-INF/jsp/view.jsp" : "/WEB-INF/jsp/edit.jsp")
         ).forward(request, response);
     }
+
 }
