@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,7 +23,7 @@ public class Company implements Serializable {
         this.periods = new ArrayList<>();
     }
 
-    public Company(String name, String url, Period... periods) {
+    public Company(LocalDate parse, LocalDate parsed, String name, String url, Period... periods) {
         this(name, url, List.of(periods));
     }
 

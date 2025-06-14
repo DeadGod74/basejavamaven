@@ -93,7 +93,6 @@ public class SqlStorage implements Storage {
     @Override
     public void delete(String uuid) {
         sqlHelper.transactionalExecute(conn -> {
-            deleteContacts(conn, uuid);
             try (PreparedStatement ps = conn.prepareStatement("DELETE FROM resume WHERE uuid = ?")) {
                 ps.setString(1, uuid);
                 if (ps.executeUpdate() == 0) {
