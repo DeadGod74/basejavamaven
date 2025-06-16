@@ -52,7 +52,7 @@
     <c:when test="${type == 'QUALIFICATIONS' || type == 'ACHIEVEMENT'}">
           <tr>
                      <td colspan="2">
-                         <h3><%=((ListSection) section).getTextRepresentation()%></h3>
+                         <h3><%=((TextSection) section).getTextRepresentation()%></h3>
                      </td>
                   </tr>
     </c:when>
