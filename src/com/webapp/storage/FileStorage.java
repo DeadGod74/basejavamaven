@@ -93,7 +93,6 @@ public class FileStorage extends AbstractStorage<File> {
         return list;
     }
 
-    // Новый метод для получения списка файлов
     private File[] getFiles() {
         File[] files = directory.listFiles();
         if (files == null) {

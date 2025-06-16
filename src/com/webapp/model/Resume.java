@@ -14,6 +14,7 @@ public class Resume implements Comparable<Resume>, Serializable {
     private static final long serialVersionUID = 1L;
     private String uuid;
     private String fullName;
+    public static final Resume EMPTY = new Resume();
 
     private final Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
     private final Map<TypeSection, Section> sections = new EnumMap<>(TypeSection.class);
@@ -49,6 +50,10 @@ public class Resume implements Comparable<Resume>, Serializable {
     }
 
     public Map<TypeSection, Section> getSections(TypeSection achievement) {
+        return sections;
+    }
+
+    public Map<TypeSection, Section> getSections() {
         return sections;
     }
 

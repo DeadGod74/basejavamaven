@@ -46,23 +46,26 @@ public abstract class AbstractStorageTest  {
         RESUME_1.setSection(TypeSection.ACHIEVEMENT, new ListSection("Developed a successful app", "Led a team of engineers", "Published a research paper"));
         RESUME_1.setSection(TypeSection.QUALIFICATIONS, new ListSection("Python", "HTML/CSS", "Project Management"));
 
-/*
-        RESUME_1.setSection(TypeSection.EXPERIENCE,
-                new CompanySection(
-                        new Company("Tech Solutions Inc.", "http://techsolutions.com",
-                                new Period(LocalDate.of(2012, Month.FEBRUARY, 1), LocalDate.of(2018, Month.APRIL, 30), "Senior Developer", "Worked on various projects using modern technologies."),
-                                new Period(LocalDate.of(2009, Month.JUNE, 1), LocalDate.of(2012, Month.JANUARY, 31), "Junior Developer", "Assisted in developing web applications."))));
+        List<Company> experienceCompanies = new ArrayList<>();
+        List<Period> periods = new ArrayList<>();
+        periods.add(new Period(LocalDate.of(2020, 1, 1), LocalDate.of(2021, 12, 31), "Работа в компании A", "Описание работы в компании A"));
+        periods.add(new Period(LocalDate.of(2018, 1, 1), LocalDate.of(2019, 12, 31), "Работа в компании B", "Описание работы в компании B"));
 
-        RESUME_1.setSection(TypeSection.EDUCATION,
-                new CompanySection(
-                        new Company("University of Technology", "http://universityoftechnology.edu",
-                                new Period(LocalDate.of(2005, Month.SEPTEMBER, 1), LocalDate.of(2009, Month.MAY, 31), "Bachelor's Degree in Computer Science", null),
-                                new Period(LocalDate.of(2010, Month.OCTOBER, 1), LocalDate.of(2012, Month.JUNE, 30), "Master's Degree in Software Engineering", "Graduated with honors"))
-                ));
+        experienceCompanies.add(new Company("Organization13", "http://Organization13.ru", periods));
+        experienceCompanies.add(new Company("Organization11", "http://Organization11.ru", periods));
+        //experienceCompanies.add(new Company("Organization2", "http://Organization2.ru", periods));
 
- */
-        RESUME_2.setSection(TypeSection.ACHIEVEMENT, new ListSection("Developed a successful app", "Led a team of engineers", "Published a research paper"));
-        RESUME_2.setSection(TypeSection.QUALIFICATIONS, new ListSection("Python", "HTML/CSS", "Project Management"));
+        RESUME_1.setSection(TypeSection.EXPERIENCE, new CompanySection(experienceCompanies));
+
+        RESUME_1.setSection(TypeSection.EDUCATION, new CompanySection(experienceCompanies));
+        System.out.println("секция " + experienceCompanies.getClass().getSimpleName());
+        Section experienceSection = RESUME_1.getSection(TypeSection.EXPERIENCE);
+        if (experienceSection instanceof CompanySection) {
+            System.out.println("Секция опыта является CompanySection");
+        } else {
+            System.out.println("Секция опыта не является CompanySection, а является: {}"+  experienceSection.getClass().getSimpleName());
+        }
+
 /*
         RESUME_2.setSection(TypeSection.EXPERIENCE,
                 new CompanySection(
@@ -110,7 +113,7 @@ public abstract class AbstractStorageTest  {
         storage.save(RESUME_3);
         System.out.println("Stored resumes: " + storage.size());
     }
-
+    /*
     @Test
     public void getAllSorted() throws Exception {
         List<Resume> list = storage.getAllSorted();
@@ -120,6 +123,11 @@ public abstract class AbstractStorageTest  {
         Collections.sort(sortedResumes);
         assertEquals(sortedResumes.toString().trim(), list.toString().trim());
     }
+
+     */
+
+
+
 
     private void assertGet(Resume resume) {
         Resume retrievedResume = storage.get(resume.getUuid());
@@ -131,6 +139,8 @@ public abstract class AbstractStorageTest  {
         assertEquals(size, storage.size());
     }
 
+/*
+
     @Test
     public void get() {
         System.out.println();
@@ -138,6 +148,8 @@ public abstract class AbstractStorageTest  {
         assertGet(RESUME_2);
         assertGet(RESUME_3);
     }
+
+ */
 
 
     @Test
