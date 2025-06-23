@@ -3,6 +3,7 @@ package com.webapp.storage;
 import com.webapp.exception.NotExistStorageException;
 import com.webapp.model.*;
 import com.webapp.sql.SqlHelper;
+import com.webapp.util.JsonParser;
 
 import java.sql.*;
 import java.util.*;
@@ -203,11 +204,12 @@ public class SqlStorage implements Storage {
     }
 
     private void insertSections(Connection conn, Resume resume) throws SQLException {
-        try (PreparedStatement ps = conn.prepareStatement("INSERT INTO section (resume_uuid, type, content) VALUES (?, ?, ?)")) {
-            for (Map.Entry<TypeSection, Section> entry : resume.getSections(TypeSection.ACHIEVEMENT).entrySet()) {
+        try (PreparedStatement ps = conn.prepareStatement("INSERT INTO section (resume_uuid, type, content) VALUES (?,?,?)")) {
+            for (Map.Entry<TypeSection, Section> e : resume.getSections().entrySet()) {
                 ps.setString(1, resume.getUuid());
-                ps.setString(2, entry.getKey().name());
-                ps.setString(3, entry.getValue().getTextRepresentation());
+                ps.setString(2, e.getKey().name());
+                Section section = e.getValue();
+                ps.setString(3, JsonParser.write(section, Section.class));
                 ps.addBatch();
             }
             ps.executeBatch();

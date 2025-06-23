@@ -3,19 +3,16 @@ package com.webapp.model;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serial;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ListSection extends Section{
+public class ListSection extends Section {
+
     @Serial
     private static final long serialVersionUID = 1L;
     private List<String> list;
-
-    public ListSection() {
-    }
+    private List<String> items;
+    public static final ListSection EMPTY = new ListSection("");
 
     public ListSection(String... list) {
         this(Arrays.asList(list));
@@ -27,6 +24,10 @@ public class ListSection extends Section{
 
     public List<String> getList() {
         return list;
+    }
+
+    public String getTextRepresentation() {
+        return String.join(", ", list);
     }
 
     @Override
@@ -47,12 +48,8 @@ public class ListSection extends Section{
         return list != null ? list.hashCode() : 0;
     }
 
-    @Override
-    public List<Company> getContent() {
-        return Collections.emptyList();
-    }
 
-    public String getTextRepresentation() {
-        return String.join(", ", list);
+    public List<String> getItems() {
+        return items;
     }
 }

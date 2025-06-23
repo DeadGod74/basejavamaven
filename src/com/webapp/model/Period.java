@@ -20,16 +20,12 @@ public class Period implements Serializable {
     private final LocalDate endDate;
     private final String name;
     private final String description;
+    public static final Period EMPTY = new Period(null, null, null, null);
 
     public Period(LocalDate startDate, LocalDate endDate, String name, String description) {
-        this.startDate = Objects.requireNonNull(startDate, "startDate must not be null");
-        this.endDate = Objects.requireNonNull(endDate, "endDate must not be null");
-        this.name = Objects.requireNonNull(name, "name must not be null");
-
-        if (this.endDate.isBefore(this.startDate)) {
-            throw new IllegalArgumentException("endDate must not be before startDate");
-        }
-
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.name = name;
         this.description = description != null ? description : "";
     }
 

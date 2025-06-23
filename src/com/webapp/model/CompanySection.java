@@ -6,6 +6,7 @@ import java.io.Serial;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CompanySection extends Section{
@@ -13,22 +14,18 @@ public class CompanySection extends Section{
     private static final long serialVersionUID = 1L;
     private List<Company> companies;
 
-    public CompanySection() {
-    }
 
-    @Override
     public String getTextRepresentation() {
-        if (companies.isEmpty()) {
-            return "Нет компаний";
+        String sectionType = "CompanySection";
+        if (companies == null || companies.isEmpty()) {
+            return sectionType + ": Нет компаний";
         }
-        return companies.stream()
-                .map(Company::getNameCompany) 
-                .reduce((first, second) -> first + ", " + second)
-                .orElse("");
-    }
 
-    public CompanySection(Company company) {
-        this.companies = new ArrayList<>();
+        List<String> companyRepresentations = companies.stream()
+                .map(company -> company.getNameCompany() + ", " + company.getWebsite())
+                .collect(Collectors.toList());
+
+        return sectionType + ": " + String.join(", ", companyRepresentations);
     }
 
     public CompanySection(List<Company> organizations) {
@@ -53,7 +50,7 @@ public class CompanySection extends Section{
     }
 
     @Override
-    public List<Company> getContent() {
-        return companies;
+    public String toString() {
+        return getTextRepresentation();
     }
 }

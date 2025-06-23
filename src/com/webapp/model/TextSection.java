@@ -1,8 +1,5 @@
 package com.webapp.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serial;
@@ -16,6 +13,8 @@ public class TextSection extends Section {
     private static final long serialVersionUID = 1L;
 
     private String text;
+
+    public static final TextSection EMPTY = new TextSection("");
 
     public TextSection(String text) {
         this.text = text;
@@ -43,16 +42,22 @@ public class TextSection extends Section {
         return text != null ? text.hashCode() : 0;
     }
 
-    @Override
-    public List<Company> getContent() {
-        return Collections.emptyList();
-    }
-
     public void setText(String text) {
         this.text = text;
     }
 
     public String getTextRepresentation() {
-        return text;
+        StringBuilder representation = new StringBuilder();
+
+        if (text != null && !text.isEmpty()) {
+            String[] lines = text.split("\n");
+            for (String line : lines) {
+                representation.append(line.trim()).append("\n");
+            }
+        } else {
+            representation.append("Нет доступного текста.");
+        }
+
+        return representation.toString().trim();
     }
 }

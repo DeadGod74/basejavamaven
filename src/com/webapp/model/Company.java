@@ -23,6 +23,7 @@ public class Company implements Serializable {
         this.periods = new ArrayList<>();
     }
 
+
     public Company(LocalDate parse, LocalDate parsed, String name, String url, Period... periods) {
         this(name, url, List.of(periods));
     }
@@ -30,7 +31,7 @@ public class Company implements Serializable {
     public Company(String name, String url, List<Period> periods) {
         this.companyName = Objects.requireNonNull(name, "name must not be null");
         this.website = Objects.requireNonNull(url, "website must not be null");
-        this.periods = new ArrayList<>();
+        this.periods = new ArrayList<>(periods);
     }
 
     public Company(String name, String url, List<Period> periods, List<Period> additionalPeriods) {
@@ -38,6 +39,8 @@ public class Company implements Serializable {
         this.website = Objects.requireNonNull(url, "website must not be null");
         this.periods = List.copyOf(periods);
     }
+
+    public static final Company EMPTY = new Company("", "", new ArrayList<>());
 
     @Override
     public boolean equals(Object o) {
