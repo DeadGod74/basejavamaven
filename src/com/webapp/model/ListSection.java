@@ -50,6 +50,10 @@ public class ListSection extends Section {
 
 
     public List<String> getItems() {
-        return items;
+        return new ArrayList<>(list);
+    }
+
+    public String getType() {
+        return "ListSection";
     }
 }

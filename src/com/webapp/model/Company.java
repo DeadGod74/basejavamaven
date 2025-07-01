@@ -15,58 +15,30 @@ public class Company implements Serializable {
     private static final long serialVersionUID = 1L;
     private final String companyName;
     private final String website;
-    private List<Period> periods = new ArrayList<>();
+    private List<Period> periods;
 
+    // Конструктор по умолчанию
     public Company() {
         this.companyName = null;
         this.website = null;
         this.periods = new ArrayList<>();
     }
 
-
-    public Company(LocalDate parse, LocalDate parsed, String name, String url, Period... periods) {
-        this(name, url, List.of(periods));
+    // Конструктор с двумя параметрами
+    public Company(String name, String url) {
+        this(name, url, new ArrayList<>()); // Создаем пустой список периодов
     }
 
+    // Конструктор с тремя параметрами
     public Company(String name, String url, List<Period> periods) {
         this.companyName = Objects.requireNonNull(name, "name must not be null");
         this.website = Objects.requireNonNull(url, "website must not be null");
         this.periods = new ArrayList<>(periods);
     }
 
-    public Company(String name, String url, List<Period> periods, List<Period> additionalPeriods) {
-        this.companyName = Objects.requireNonNull(name, "name must not be null");
-        this.website = Objects.requireNonNull(url, "website must not be null");
-        this.periods = List.copyOf(periods);
-    }
-
-    public static final Company EMPTY = new Company("", "", new ArrayList<>());
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Company that = (Company) o;
-        return Objects.equals(companyName, that.companyName) &&
-                Objects.equals(website, that.website) &&
-                Objects.equals(periods, that.periods);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Objects.hashCode(companyName);
-        result = 31 * result + Objects.hashCode(website);
-        result = 31 * result + Objects.hashCode(periods);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Company{" +
-                "companyName='" + companyName + '\'' +
-                ", website='" + website + '\'' +
-                ", periods=" + periods +
-                '}';
+    // Метод для установки периодов
+    public void setPeriods(List<Period> periods) {
+        this.periods = new ArrayList<>(periods);
     }
 
     public List<Period> getPeriods() {
@@ -81,10 +53,5 @@ public class Company implements Serializable {
         return website;
     }
 
-    public void addPeriod(Period period) {
-        periods.add(period);
-    }
 }
-
-
 

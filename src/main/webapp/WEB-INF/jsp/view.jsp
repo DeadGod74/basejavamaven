@@ -1,74 +1,106 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ page import="com.webapp.model.TextSection" %>
 <%@ page import="com.webapp.model.ListSection" %>
 <%@ page import="com.webapp.model.CompanySection" %>
+<%@ page import="com.webapp.model.ContactType" %>
 <%@ page import="com.webapp.util.HtmlUtil" %>
-<%@ page import="com.webapp.util.SectionUtils" %>
+<%@ page import="com.webapp.model.TypeSection" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Iterator" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="css/style.css">
     <jsp:useBean id="resume" type="com.webapp.model.Resume" scope="request"/>
-    <title>Резюме ${resume.fullName}</title>
+    <title>Резюме ${not empty resume.fullName ? resume.fullName : 'Без имени'}</title>
 </head>
 <body>
 <jsp:include page="fragments/header.jsp"/>
-<section>
-    <h2>${resume.fullName}&nbsp;<a href="resume?uuid=${resume.uuid}&action=edit">Edit</a></h2>
-    <p>
-        <c:forEach var="contactEntry" items="${resume.contacts}">
-            <jsp:useBean id="contactEntry"
-                         type="java.util.Map.Entry<com.webapp.model.ContactType, java.lang.String>"/>
-                <%=contactEntry.getKey().toHtml(contactEntry.getValue())%><br/>
+<h3>Резюме: ${not empty resume.fullName ? resume.fullName : 'Без имени'}</h3>
+
+<div class="container">
+<div class="section">
+    <h1>Контакты</h1>
+    <ul class="without-bullets">
+        <%
+            Map<ContactType, String> contacts = resume.getContacts();
+            for (Map.Entry<ContactType, String> entry : contacts.entrySet()) {
+                ContactType type = entry.getKey();
+                String contact = entry.getValue();
+                if (contact != null && !contact.isEmpty()) {
+        %>
+                    <li>
+                    <label for="<%= type.name() %>"><%= type.name() %>:</label>
+                    <%= contact %>
+                    </li>
+        <%
+                }
+            }
+        %>
+    </ul>
+</div>
+
+    <div class="section">
+        <h1>Личные качества</h1>
+        <ul class="without-bullets">
+            <li>${personalInfo.getTextRepresentation().replace('"', '')}</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h1>Позиция</h1>
+         <ul class="without-bullets">
+                <li>${objectives.getTextRepresentation().replace('"', '')}</li>
+         </ul>
+    </div>
+
+    <div class="section">
+        <h1>Достижения</h1>
+        <ul class="with-bullets">
+            <c:forEach var="achievement" items="${achievements}">
+                <li>${achievement}</li>
+            </c:forEach>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h1>Квалификация</h1>
+        <ul class="with-bullets">
+            <c:forEach var="qualification" items="${qualifications}">
+                <li>${qualification}</li>
+            </c:forEach>
+        </ul>
+    </div>
+<div class="section">
+    <h1>Опыт</h1>
+    <ul class="with-bullets">
+        <c:forEach var="company" items="${companies}">
+            <li>
+                <strong>${company.nameCompany}</strong><br>
+                <a href="${company.website}" target="_blank">${company.website}</a>
+                <ul>
+                    <c:forEach var="period" items="${company.periods}">
+                        <li>
+                            <strong>${period.name}</strong><br>
+                            Даты: ${period.startDate} - ${period.endDate}<br>
+                            Описание: ${period.description}
+                        </li>
+                    </c:forEach>
+                </ul>
+            </li>
         </c:forEach>
-    <p>
-<hr>
-    <table cellpadding="2">
-        <c:forEach var="sectionEntry" items="${resume.sections}">
-            <jsp:useBean id="sectionEntry"
-                         type="java.util.Map.Entry<com.webapp.model.TypeSection, com.webapp.model.Section>"/>
-            <c:set var="type" value="${sectionEntry.key}"/>
-            <c:set var="section" value="${sectionEntry.value}"/>
-            <jsp:useBean id="section" type="com.webapp.model.Section"/>
-            <tr>
-                <td colspan="2"><h2><a name="type.name">${type.title}</a></h2></td>
-            </tr>
-<c:choose>
-    <c:when test="${type == 'OBJECTIVE'}">
-        <tr>
-           <td colspan="2">
-               <h3><%=((TextSection) section).getTextRepresentation()%></h3>
-           </td>
-        </tr>
-    </c:when>
-    <c:when test="${type == 'PERSONAL'}">
-        <tr>
-           <td colspan="2">
-               <h3><%=((TextSection) section).getTextRepresentation()%></h3>
-           </td>
-        </tr>
-    </c:when>
-    <c:when test="${type == 'QUALIFICATIONS' || type == 'ACHIEVEMENT'}">
-          <tr>
-                     <td colspan="2">
-                         <h3><%=((TextSection) section).getTextRepresentation()%></h3>
-                     </td>
-                  </tr>
-    </c:when>
-    <c:when test="${type == 'EXPERIENCE' || type == 'EDUCATION'}">
-        <tr>
-                            <td colspan="2">
-                                <h3><%=((TextSection) section).getTextRepresentation()%></h3>
-                            </td>
-                         </tr>
-    </c:when>
-</c:choose>
-        </c:forEach>
-    </table>
-    <br/>
-    <button onclick="window.history.back()">ОК</button>
-</section>
+    </ul>
+</div>
+
+
+    <!-- Кнопки "Назад" и "Редактировать" -->
+    <div class="button-container">
+        <button class="button" onclick="window.history.back()">Назад</button>
+        <a href="<c:url value='/resume'/>?uuid=${resume.uuid}&action=edit" class="button">Редактировать</a>
+    </div>
+</div>
 <jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>

@@ -1,71 +1,96 @@
-section {
-    width: 900px;
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
     margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-header {
-    background: none repeat scroll 0 0 #A6C9E2;
-    color: #2E6E9E;
-    font-size: 20px;
-    padding: 5px 20px;
-    text-align: center;
+.section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 5px;
 }
 
-footer {
-    background: none repeat scroll 0 0 #A6C9E2;
-    color: #2E6E9E;
-    font-size: 20px;
-    padding: 5px 20px;
-    margin: 20px 0;
-    text-align: center;
+h1 {
+    font-size: 24px;
+    color: #333;
+    text-align: center; /* Центрирование заголовка */
 }
 
-dl {
-    background: none repeat scroll 0 0 #FAFAFA;
-    margin: 8px 0;
-    padding: 0;
+table {
+    width: 100%;
+    border-collapse: collapse; /* Убирает двойные границы */
 }
 
-dt {
-    display: inline-block;
-    width: 170px;
+th, td {
+    padding: 12px; /* Увеличение отступов */
+    text-align: left; /* Выравнивание текста */
+    border-bottom: 1px solid #ddd; /* Нижняя граница ячеек */
 }
 
-dd {
-    display: inline-block;
-    margin-left: 8px;
-    vertical-align: top;
+th {
+    background-color: rgb(73, 103, 141); /* Цвет фона заголовка (темно-серый) */
+    color: white; /* Цвет текста заголовка */
 }
 
-h2, h3 {
-    margin: 15px 0 5px;
+tr:hover {
+    background-color: #f1f1f1; /* Цвет строки при наведении */
 }
 
-li {
-    margin: 15px 0;
+a {
+    color: #007bff; /* Цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
 }
 
-a[href^="skype:"] {
-    padding-left: 20px !important;
-    background: url(../img/skype.png) no-repeat center left;
+a:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
 }
 
-a[href^="mailto:"] {
-    padding-left: 20px !important;
-    background: url(../img/email.png) no-repeat center left;
+.button-container {
+    margin-top: 20px;
 }
 
-a[href^="https://stackoverflow.com"] {
-    padding-left: 20px !important;
-    background: url(../img/so.png) no-repeat center left;
+.button {
+    padding: 10px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(73, 103, 141);
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-a[href^="https://www.linkedin.com"] {
-    padding-left: 20px !important;
-    background: url(../img/lin.png) no-repeat center left;
+.button:hover {
+    background-color: #0056b3; /* Цвет кнопки при наведении */
 }
 
-a[href*="github."] {
-    padding-left: 20px !important;
-    background: url(../img/gh.png) no-repeat center left;
+input[type="text"] {
+    width: 100%; /* Поле будет занимать всю ширину родительского элемента */
+    box-sizing: border-box; /* Учитывает отступы и границы в общей ширине */
+    padding: 10px; /* Добавить внутренний отступ для удобства */
+    border: 1px solid #ccc; /* Граница поля ввода */
+    border-radius: 4px; /* Скругление углов */
+}
+
+/* Список с маркерами */
+.with-bullets {
+    list-style-type: disc; /* Оставляем стандартные маркеры */
+    padding-left: 20px; /* Отступ слева для маркеров */
+}
+
+/* Список без маркеров */
+.without-bullets {
+    list-style-type: none; /* Убираем маркеры */
+    padding: 0; /* Убираем отступы */
+    margin: 0; /* Убираем внешние отступы */
 }

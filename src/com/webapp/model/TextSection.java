@@ -54,8 +54,6 @@ public class TextSection extends Section {
             for (String line : lines) {
                 representation.append(line.trim()).append("\n");
             }
-        } else {
-            representation.append("Нет доступного текста.");
         }
 
         return representation.toString().trim();

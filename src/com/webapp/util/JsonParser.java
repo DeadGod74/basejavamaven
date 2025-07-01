@@ -2,7 +2,9 @@ package com.webapp.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.webapp.model.ListSection;
 import com.webapp.model.Section;
+import com.webapp.model.TextSection;
 
 import java.io.Reader;
 import java.io.Writer;

@@ -167,7 +167,7 @@ public class SqlStorage implements Storage {
     private void deleteContacts(Connection conn, String uuid) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement("DELETE FROM contact WHERE resume_uuid = ?")) {
             ps.setString(1, uuid);
-            ps.executeUpdate(); // Используем executeUpdate для получения количества удаленных строк
+            ps.executeUpdate();
         }
     }
 

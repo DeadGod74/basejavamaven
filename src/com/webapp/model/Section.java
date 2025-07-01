@@ -2,6 +2,7 @@ package com.webapp.model;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 

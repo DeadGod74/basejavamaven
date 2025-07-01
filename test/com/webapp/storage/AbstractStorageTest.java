@@ -41,30 +41,31 @@ public abstract class AbstractStorageTest  {
 
         RESUME_1.setContact(ContactType.MAIL, "alice.smith@example.com");
         RESUME_1.setContact(ContactType.PHONE, "+9876543210");
-        RESUME_1.setSection(TypeSection.OBJECTIVE, new TextSection("Seeking a challenging position in software development."));
-        RESUME_1.setSection(TypeSection.PERSONAL, new TextSection("Passionate about technology and innovation."));
+        RESUME_1.setSection(TypeSection.OBJECTIVE, new TextSection("Seeking a challenging position in software development"));
+        RESUME_1.setSection(TypeSection.PERSONAL, new TextSection("Passionate about technology and innovation"));
         RESUME_1.setSection(TypeSection.ACHIEVEMENT, new ListSection("Developed a successful app", "Led a team of engineers", "Published a research paper"));
         RESUME_1.setSection(TypeSection.QUALIFICATIONS, new ListSection("Python", "HTML/CSS", "Project Management"));
 
         List<Company> experienceCompanies = new ArrayList<>();
-        List<Period> periods = new ArrayList<>();
-        periods.add(new Period(LocalDate.of(2020, 1, 1), LocalDate.of(2021, 12, 31), "Работа в компании A", "Описание работы в компании A"));
-        periods.add(new Period(LocalDate.of(2018, 1, 1), LocalDate.of(2019, 12, 31), "Работа в компании B", "Описание работы в компании B"));
-
-        experienceCompanies.add(new Company("Organization13", "http://Organization13.ru", periods));
-        experienceCompanies.add(new Company("Organization11", "http://Organization11.ru", periods));
-        //experienceCompanies.add(new Company("Organization2", "http://Organization2.ru", periods));
-
+        List<Period> periodsA = new ArrayList<>();
+        List<Period> periodsB = new ArrayList<>();
+        periodsA.add(new Period(LocalDate.of(2020, 1, 1), LocalDate.of(2021, 12, 31), "Работа в компании A", "Описание работы в компании A"));
+        periodsB.add(new Period(LocalDate.of(2018, 1, 1), LocalDate.of(2019, 12, 31), "Работа в компании B", "Описание работы в компании B"));
+        //System.out.println("вывод периодов: " + periodsB);
+        experienceCompanies.add(new Company("Organization13", "http://Organization13.ru", periodsA));
+        experienceCompanies.add(new Company("Organization11", "http://Organization11.ru", periodsB));
+        //System.out.println("вывод периодов: " + experienceCompanies);
         RESUME_1.setSection(TypeSection.EXPERIENCE, new CompanySection(experienceCompanies));
-
-        RESUME_1.setSection(TypeSection.EDUCATION, new CompanySection(experienceCompanies));
-        System.out.println("секция " + experienceCompanies.getClass().getSimpleName());
-        Section experienceSection = RESUME_1.getSection(TypeSection.EXPERIENCE);
-        if (experienceSection instanceof CompanySection) {
-            System.out.println("Секция опыта является CompanySection");
-        } else {
-            System.out.println("Секция опыта не является CompanySection, а является: {}"+  experienceSection.getClass().getSimpleName());
-        }
+        //System.out.println("Содержимое секции EXPERIENCE: " + RESUME_1.getSection(TypeSection.EXPERIENCE));
+        //System.out.println("вывод периодов: " + RESUME_1);
+        //RESUME_1.setSection(TypeSection.EDUCATION, new CompanySection(experienceCompanies));
+        //System.out.println("секция " + experienceCompanies.getClass().getSimpleName());
+        //Section experienceSection = RESUME_1.getSection(TypeSection.EXPERIENCE);
+        //if (experienceSection instanceof CompanySection) {
+        //    System.out.println("Секция опыта является CompanySection");
+        //} else {
+        //    System.out.println("Секция опыта не является CompanySection, а является: {}"+  experienceSection.getClass().getSimpleName());
+        //}
 
 /*
         RESUME_2.setSection(TypeSection.EXPERIENCE,

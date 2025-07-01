@@ -48,7 +48,7 @@ public class PathStorage extends AbstractStorage<Path> {
 
     @Override
     protected void doUpdate(Resume r, Path path) {
-        System.out.println("Updating resume: " + r); //отладочный вывод
+        System.out.println("Updating resume: " + r);
         try {
             streamSerializer.doWrite(r, new BufferedOutputStream(Files.newOutputStream(path)));
         } catch (IOException e) {

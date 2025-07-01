@@ -12,24 +12,35 @@
 </head>
 <body>
 <jsp:include page="fragments/header.jsp"/>
-<section>
-    <table border="1" cellpadding="8" cellspacing="0">
-        <tr>
-            <th>Имя</th>
-            <th>Email</th>
-            <th></th>
-            <th></th>
-        </tr>
-        <c:forEach items="${resumes}" var="resume">
-            <jsp:useBean id="resume" type="com.webapp.model.Resume"/>
-            <tr>
-                <td><a href="resume?uuid=${resume.uuid}&action=view">${resume.fullName}</a></td>
-                <td><%=ContactType.MAIL.toHtml(resume.getContact(ContactType.MAIL))%></td>
-                <td><a href="resume?uuid=${resume.uuid}&action=delete">Delete</a></td>
-                <td><a href="resume?uuid=${resume.uuid}&action=edit">Edit</a></td>
-            </tr>
-        </c:forEach>
-    </table>
+<section class="container">
+    <h1>Список всех резюме</h1>
+    <div class="section">
+        <table>
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Email</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${resumes}" var="resume">
+                    <jsp:useBean id="resume" type="com.webapp.model.Resume"/>
+                    <tr>
+                        <td><a href="resume?uuid=${resume.uuid}&action=view">${resume.fullName}</a></td>
+                        <td><%=ContactType.MAIL.toHtml(resume.getContact(ContactType.MAIL))%></td>
+                        <td>
+                            <a class="button" href="resume?uuid=${resume.uuid}&action=delete">Удалить</a>
+                            <a class="button" href="resume?uuid=${resume.uuid}&action=edit">Редактировать</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
+    <div class="button-container">
+        <a class="button" href="resume?action=add">Добавить нового сотрудника</a>
+    </div>
 </section>
 <jsp:include page="fragments/footer.jsp"/>
 </body>
